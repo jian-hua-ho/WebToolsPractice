@@ -14,6 +14,10 @@ module.exports = {
         filename: 'app.bundle.js',
     },
 
+    devServer: {
+        disableHostCheck: true,
+    },
+
     module: {
         rules: [
             {
