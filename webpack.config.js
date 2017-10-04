@@ -2,8 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-    template: './src/app.html',
-    filename: 'app.html',
+    template: './public/index.html',
+    filename: 'index.html',
     inject: 'body',
 });
 
@@ -19,17 +19,14 @@ module.exports = {
 
     devServer: {
         disableHostCheck: true,
+        contentBase: path.join(__dirname, 'public'),
+        host: '0.0.0.0',
     },
 
     module: {
         rules: [
             {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader',
-            },
-            {
-                test: /\.jsx$/,
+                test: /\.js$|.jsx$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
             },
