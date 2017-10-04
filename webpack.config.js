@@ -9,8 +9,7 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 
 module.exports = {
     entry: [
-        require.resolve('webpack/hot/dev-server'),
-        path.resolve(__dirname, 'src/app.js'),
+        './src/app.js',
     ],
 
     output: {
