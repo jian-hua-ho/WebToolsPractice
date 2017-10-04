@@ -8,10 +8,14 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 });
 
 module.exports = {
-    entry: './src/app.js',
+    entry: [
+        require.resolve('webpack/hot/dev-server'),
+        path.resolve(__dirname, 'src/app.js'),
+    ],
 
     output: {
         filename: 'app.bundle.js',
+        path: path.resolve(__dirname, 'dist'),
     },
 
     devServer: {
