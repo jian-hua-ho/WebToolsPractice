@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 
+// Components
+import NumberInput from 'app/components/form/number/NumberInput';
+
 class Calculator extends Component {
     render() {
-        return <div>This is calculator</div>
+        return (
+            <div>
+                <NumberInput />
+            </div>
+        );
     }
 }
 
