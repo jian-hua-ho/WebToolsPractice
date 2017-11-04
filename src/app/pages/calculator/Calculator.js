@@ -5,6 +5,9 @@ import _ from 'lodash';
 import NumberInput from 'app/components/form/number/NumberInput';
 import Button from 'app/components/element/button/Button';
 
+// Util
+import { INT_NUMBERS } from 'app/util/keyCode';
+
 class Calculator extends Component {
     // Life Cycle
     constructor() {
@@ -16,11 +19,22 @@ class Calculator extends Component {
     }
 
     // Event Handlers
-    _handleNumberKeyPress(e) {
-        let oriNumString = _.toString(this.state.num);
-        let keyCode = e.keyCode || e.which;
-        let appendString = String.fromCharCode(keyCode);
-        let value = oriNumString === '0' ? _.toNumber(appendString) : _.toNumber(appendString + oriNumString);
+    _handleNumberKeyDown(e) {
+        let oriNumString = _.toString(this.state.num),
+            keyCode = e.which,
+            value,
+            resultString;
+
+        if (keyCode === 8) {
+            resultString = oriNumString === '0' ? oriNumString : oriNumString.slice(0, -1);
+            value = _.toNumber(resultString);
+        } else if (INT_NUMBERS.indexOf(keyCode) > -1) {
+            let appendString = String.fromCharCode(keyCode);
+            resultString = oriNumString === '0' ? appendString : oriNumString + appendString;
+            value = _.toNumber(resultString);
+        } else {
+            value = _.toNumber(oriNumString);
+        }
 
         this.setState({
             num: value,
@@ -50,7 +64,7 @@ class Calculator extends Component {
                 <div>
                     <NumberInput
                         value={this.state.num}
-                        onKeyPress={this._handleNumberKeyPress.bind(this)} />
+                        onKeyDown={this._handleNumberKeyDown.bind(this)} />
                 </div>
                 <div>
                     <Button onClick={this._handleBtnClick.bind(this, 1)} >1</Button>
