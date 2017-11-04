@@ -2,19 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
-const NumberInput = ({ value, onKeyPress, placeholder }) => {
+const NumberInput = ({ value, onKeyDown, placeholder }) => {
     return (
         <input
             type="number"
             value={value}
-            onKeyPress={onKeyPress}
+            onKeyDown={onKeyDown}
             placeholder={placeholder} />
     );
 };
 
 NumberInput.propTypes = {
     value: PropTypes.number,
-    onKeyPress: PropTypes.func,
+    onKeyDown: PropTypes.func,
     placeholder: PropTypes.string,
 };
 
