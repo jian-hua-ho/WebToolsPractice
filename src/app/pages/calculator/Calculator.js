@@ -5,7 +5,14 @@ import NumberInput from 'app/components/form/number/NumberInput';
 import Button from 'app/components/element/button/Button';
 
 class Calculator extends Component {
-    // Event handlers
+    // Life Cycle
+    constructor() {
+        super();
+
+
+    }
+
+    // Event Handlers
     _handleBtnClick(str) {
         alert(str);
     }
