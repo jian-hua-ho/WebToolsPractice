@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 // Components
 import Root from 'app/pages/root/Root';
+import Calculator from 'app/pages/calculator/Calculator';
 
 class App extends Component {
     render() {
@@ -10,6 +11,7 @@ class App extends Component {
             <BrowserRouter>
                 <Switch>
                     <Route exact path="/" component={Root} />
+                    <Route path="/calculator" component={Calculator} />
                 </Switch>
             </BrowserRouter>
         );
