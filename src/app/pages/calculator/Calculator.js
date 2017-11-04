@@ -21,21 +21,7 @@ class Calculator extends Component {
 
     // Event Handlers
     _handleNumberKeyDown(e) {
-        let oriNumString = _.toString(this.state.num),
-            keyCode = e.which,
-            value,
-            resultString;
-
-        if (keyCode === 8) {
-            resultString = oriNumString === '0' ? oriNumString : oriNumString.slice(0, -1);
-            value = _.toNumber(resultString);
-        } else if (INT_NUMBERS.indexOf(keyCode) > -1) {
-            let appendString = String.fromCharCode(keyCode);
-            resultString = oriNumString === '0' ? appendString : oriNumString + appendString;
-            value = _.toNumber(resultString);
-        } else {
-            value = _.toNumber(oriNumString);
-        }
+        let value = _getResultValue(e.which, this.state.num);
 
         this.setState({
             num: value,
@@ -96,6 +82,25 @@ class Calculator extends Component {
             </div>
         );
     }
+}
+
+function _getResultValue(keyCode, num) {
+    let oriNumString = _.toString(num),
+        resultString,
+        result;
+
+    if (keyCode === 8) {
+        resultString = oriNumString === '0' ? oriNumString : oriNumString.slice(0, -1);
+        result = _.toNumber(resultString);
+    } else if (INT_NUMBERS.indexOf(keyCode) > -1) {
+        let appendString = String.fromCharCode(keyCode);
+        resultString = oriNumString === '0' ? appendString : oriNumString + appendString;
+        result = _.toNumber(resultString);
+    } else {
+        result = _.toNumber(oriNumString);
+    }
+
+    return result;
 }
 
 export default Calculator;
