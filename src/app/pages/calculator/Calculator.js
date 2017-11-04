@@ -53,8 +53,14 @@ class Calculator extends Component {
         alert('Minus');
     }
 
-    _handleBtnClick(num) {
-        alert(num);
+    _handleBtnClick(numString) {
+        let oriNumString = _.toString(this.state.num),
+            resultString = oriNumString + numString,
+            value = _.toNumber(resultString);
+
+        this.setState({
+            num: value,
+        });
     }
 
     // Render
@@ -67,16 +73,16 @@ class Calculator extends Component {
                         onKeyDown={this._handleNumberKeyDown.bind(this)} />
                 </div>
                 <div>
-                    <Button onClick={this._handleBtnClick.bind(this, 1)} >1</Button>
-                    <Button onClick={this._handleBtnClick.bind(this, 2)} >2</Button>
-                    <Button onClick={this._handleBtnClick.bind(this, 3)} >3</Button>
-                    <Button onClick={this._handleBtnClick.bind(this, 4)} >4</Button>
-                    <Button onClick={this._handleBtnClick.bind(this, 5)} >5</Button>
-                    <Button onClick={this._handleBtnClick.bind(this, 6)} >6</Button>
-                    <Button onClick={this._handleBtnClick.bind(this, 7)} >7</Button>
-                    <Button onClick={this._handleBtnClick.bind(this, 8)} >8</Button>
-                    <Button onClick={this._handleBtnClick.bind(this, 9)} >9</Button>
-                    <Button onClick={this._handleBtnClick.bind(this, 0)} >0</Button>
+                    <Button onClick={this._handleBtnClick.bind(this, '1')}>1</Button>
+                    <Button onClick={this._handleBtnClick.bind(this, '2')}>2</Button>
+                    <Button onClick={this._handleBtnClick.bind(this, '3')}>3</Button>
+                    <Button onClick={this._handleBtnClick.bind(this, '4')}>4</Button>
+                    <Button onClick={this._handleBtnClick.bind(this, '5')}>5</Button>
+                    <Button onClick={this._handleBtnClick.bind(this, '6')}>6</Button>
+                    <Button onClick={this._handleBtnClick.bind(this, '7')}>7</Button>
+                    <Button onClick={this._handleBtnClick.bind(this, '8')}>8</Button>
+                    <Button onClick={this._handleBtnClick.bind(this, '9')}>9</Button>
+                    <Button onClick={this._handleBtnClick.bind(this, '0')}>0</Button>
                     <Button onClick={this._handleEqualClick.bind(this)} >=</Button>
                     <Button onClick={this._handlePlusClick.bind(this)} >+</Button>
                     <Button onClick={this._handleMinusClick.bind(this)} >-</Button>
