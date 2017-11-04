@@ -1,2 +1,10 @@
-node_modules/
+# System
+*.swp
+.DS_Store
+
+# Project
 dist/
+node_modules
+npm-debug.log
+.yarn-cache
+yarn-error.log
