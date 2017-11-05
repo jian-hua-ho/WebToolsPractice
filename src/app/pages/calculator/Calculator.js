@@ -15,6 +15,7 @@ class Calculator extends Component {
 
         this.state = {
             num: 0,
+            temp: 0,
             plusNum: 0,
             shouldRefresh: false,
         };
@@ -36,10 +37,11 @@ class Calculator extends Component {
     }
 
     _handlePlusClick() {
-        let { num, plusNum } = this.state;
+        let { num, temp, plusNum } = this.state;
 
         this.setState({
-            num: num + plusNum,
+            num: num + temp + plusNum,
+            temp: temp + plusNum,
             plusNum: num,
             shouldRefresh: true,
         });
