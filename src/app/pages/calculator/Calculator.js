@@ -16,16 +16,18 @@ class Calculator extends Component {
         this.state = {
             num: 0,
             plusNum: 0,
+            shouldRefresh: false,
         };
     }
 
     // Event Handlers
     _handleNumberKeyDown(e) {
-        let { num } = this.state,
-            value = _getResultValue(e.which, num);
+        let { num, shouldRefresh } = this.state,
+            value = _getResultValue(e.which, num, shouldRefresh);
 
         this.setState({
             num: value,
+            shouldRefresh: false,
         });
     }
 
@@ -39,6 +41,7 @@ class Calculator extends Component {
         this.setState({
             num: num + plusNum,
             plusNum: num,
+            shouldRefresh: true,
         });
     }
 
@@ -47,12 +50,21 @@ class Calculator extends Component {
     }
 
     _handleBtnClick(numString) {
-        let oriNumString = _.toString(this.state.num),
-            resultString = oriNumString + numString,
+        let { num, shouldRefresh } = this.state,
+            value;
+
+        if (shouldRefresh) {
+            value = _.toNumber(numString);
+        } else {
+            let oriNumString = _.toString(num),
+                resultString = oriNumString + numString;
+
             value = _.toNumber(resultString);
+        }
 
         this.setState({
             num: value,
+            shouldRefresh: false,
         });
     }
 
@@ -85,9 +97,13 @@ class Calculator extends Component {
     }
 }
 
-function _getResultValue(keyCode, num) {
+function _getResultValue(keyCode, num, shouldRefresh) {
     let oriNumString = _.toString(num),
         result;
+
+    if (shouldRefresh) {
+        return _.toNumber(String.fromCharCode(keyCode));
+    }
 
     if (keyCode === 8) {
         let resultString = oriNumString === '0' ? oriNumString : oriNumString.slice(0, -1);
