@@ -16,7 +16,6 @@ class Calculator extends Component {
         this.state = {
             num: 0,
             currentNum: 0,
-            plusNum: 0,
             shouldRefresh: false,
         };
     }
@@ -37,19 +36,33 @@ class Calculator extends Component {
     }
 
     _handlePlusClick() {
-        let { num, currentNum, plusNum } = this.state;
+        let { num, currentNum } = this.state;
 
         this.setState({
-            num: num + currentNum + plusNum,
-            currentNum: currentNum + plusNum,
-            plusNum: num,
-            subNum: 0,
+            num: num + currentNum,
+            currentNum: num + currentNum,
             shouldRefresh: true,
         });
     }
 
     _handleMinusClick() {
-        alert('Minus');
+        let { num, currentNum } = this.state;
+
+        if (currentNum === 0) {
+            this.setState({
+                currentNum: num,
+                num: num,
+                shouldRefresh: true,
+            });
+
+            return;
+        }
+
+        this.setState({
+            num: currentNum - num,
+            currentNum: currentNum - num,
+            shouldRefresh: true,
+        });
     }
 
     _handleBtnClick(numString) {
