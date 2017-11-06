@@ -36,7 +36,7 @@ class Calculator extends Component {
     }
 
     _handlePlusClick() {
-        let { num, currentNum } = this.state;
+        let { num, currentNum, shouldRefresh } = this.state;
 
         this.setState({
             num: num + currentNum,
@@ -46,7 +46,7 @@ class Calculator extends Component {
     }
 
     _handleMinusClick() {
-        let { num, currentNum } = this.state;
+        let { num, currentNum, shouldRefresh } = this.state;
 
         if (currentNum === 0) {
             this.setState({
@@ -84,6 +84,14 @@ class Calculator extends Component {
         });
     }
 
+    _handleResetClick() {
+        this.setState({
+            num: 0,
+            currentNum: 0,
+            shouldRefresh: false,
+        });
+    }
+
     // Render
     render() {
         return (
@@ -105,8 +113,9 @@ class Calculator extends Component {
                     <Button onClick={this._handleBtnClick.bind(this, '9')}>9</Button>
                     <Button onClick={this._handleBtnClick.bind(this, '0')}>0</Button>
                     <Button onClick={this._handleEqualClick.bind(this)} >=</Button>
-                    <Button onClick={this._handlePlusClick.bind(this)} >+</Button>
-                    <Button onClick={this._handleMinusClick.bind(this)} >-</Button>
+                    <Button onClick={this._handlePlusClick.bind(this)}>+</Button>
+                    <Button onClick={this._handleMinusClick.bind(this)}>-</Button>
+                    <Button onClick={this._handleResetClick.bind(this)}>RESET</Button>
                 </div>
             </div>
         );
