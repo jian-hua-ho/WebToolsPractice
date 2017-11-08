@@ -47,7 +47,7 @@ class Calculator extends Component {
     }
 
     _handlePlusClick() {
-        let { num, currentNum, operator, shouldRefresh } = this.state;
+        let { num, currentNum, operator } = this.state;
 
         this.setState({
             num: calculation.calc(currentNum, num, operator),
@@ -58,11 +58,10 @@ class Calculator extends Component {
     }
 
     _handleMinusClick() {
-        let { num, currentNum, shouldRefresh, operator } = this.state;
+        let { num, currentNum, operator } = this.state;
 
         if (currentNum === 0) {
             this.setState({
-                num: num,
                 currentNum: num,
                 operator: OPERATORS.MINUS,
                 shouldRefresh: true,
