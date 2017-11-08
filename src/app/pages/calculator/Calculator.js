@@ -17,7 +17,7 @@ class Calculator extends Component {
         super();
 
         this.state = {
-            num: 0,
+            displayNum: 0,
             currentNum: 0,
             operator: OPERATORS.DEFAULT,
             shouldRefresh: false,
@@ -26,43 +26,43 @@ class Calculator extends Component {
 
     // Event Handlers
     _handleNumberKeyDown(e) {
-        let { num, shouldRefresh } = this.state,
-            value = _getResultValue(e.which, num, shouldRefresh);
+        let { displayNum, shouldRefresh } = this.state,
+            value = _getResultValue(e.which, displayNum, shouldRefresh);
 
         this.setState({
-            num: value,
+            displayNum: value,
             shouldRefresh: false,
         });
     }
 
     _handleEqualClick() {
-        let { num, currentNum, operator, shouldRefresh } = this.state;
+        let { displayNum, currentNum, operator } = this.state;
 
         this.setState({
-            num: calculation.calc(currentNum, num, operator),
-            currentNum: calculation.calc(currentNum, num, operator),
+            displayNum: calculation.calc(currentNum, displayNum, operator),
+            currentNum: calculation.calc(currentNum, displayNum, operator),
             operator: OPERATORS.DEFAULT,
             shouldRefresh: false,
         })
     }
 
     _handlePlusClick() {
-        let { num, currentNum, operator } = this.state;
+        let { displayNum, currentNum, operator } = this.state;
 
         this.setState({
-            num: calculation.calc(currentNum, num, operator),
-            currentNum: calculation.calc(currentNum, num, operator),
+            displayNum: calculation.calc(currentNum, displayNum, operator),
+            currentNum: calculation.calc(currentNum, displayNum, operator),
             operator: OPERATORS.PLUS,
             shouldRefresh: true,
         });
     }
 
     _handleMinusClick() {
-        let { num, currentNum, operator } = this.state;
+        let { displayNum, currentNum, operator } = this.state;
 
         if (currentNum === 0) {
             this.setState({
-                currentNum: num,
+                currentNum: displayNum,
                 operator: OPERATORS.MINUS,
                 shouldRefresh: true,
             });
@@ -71,35 +71,35 @@ class Calculator extends Component {
         }
 
         this.setState({
-            num: calculation.calc(currentNum, num, operator),
-            currentNum: calculation.calc(currentNum, num, operator),
+            displayNum: calculation.calc(currentNum, displayNum, operator),
+            currentNum: calculation.calc(currentNum, displayNum, operator),
             operator: OPERATORS.MINUS,
             shouldRefresh: true,
         });
     }
 
     _handleBtnClick(numString) {
-        let { num, shouldRefresh } = this.state,
+        let { displayNum, shouldRefresh } = this.state,
             value;
 
         if (shouldRefresh) {
             value = _.toNumber(numString);
         } else {
-            let oriNumString = _.toString(num),
+            let oriNumString = _.toString(displayNum),
                 resultString = oriNumString + numString;
 
             value = _.toNumber(resultString);
         }
 
         this.setState({
-            num: value,
+            displayNum: value,
             shouldRefresh: false,
         });
     }
 
     _handleResetClick() {
         this.setState({
-            num: 0,
+            displayNum: 0,
             currentNum: 0,
             operator: OPERATORS.DEFAULT,
             shouldRefresh: false,
@@ -112,7 +112,7 @@ class Calculator extends Component {
             <div>
                 <div>
                     <NumberInput
-                        value={this.state.num}
+                        value={this.state.displayNum}
                         onKeyDown={this._handleNumberKeyDown.bind(this)} />
                 </div>
                 <div>
