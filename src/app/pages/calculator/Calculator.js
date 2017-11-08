@@ -36,7 +36,14 @@ class Calculator extends Component {
     }
 
     _handleEqualClick() {
-        alert('Equal');
+        let { num, currentNum, operator, shouldRefresh } = this.state;
+
+        this.setState({
+            num: calculation.calc(currentNum, num, operator),
+            currentNum: calculation.calc(currentNum, num, operator),
+            operator: OPERATORS.DEFAULT,
+            shouldRefresh: false,
+        })
     }
 
     _handlePlusClick() {
