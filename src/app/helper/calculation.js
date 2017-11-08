@@ -1,21 +1,21 @@
 
-const export OPERATORS = {
+function calc(currentNum, num, operator) {
+    switch (operator) {
+        case OPERATORS.PLUS:
+            return currentNum + num;
+        case OPERATORS.MINUS:
+            return currentNum - num;
+        default:
+            return num;
+    }
+}
+
+export const OPERATORS = {
     DEFAULT: '',
     PLUS: '+',
     MINUS: '-',
 };
 
-function calculate(num1, num2, operator) {
-    switch (operator) {
-        case OPERATORS.PLUS:
-            return num1 + num2;
-        case OPERATORS.MINUS:
-            return num1 - num2;
-        default:
-            return 0;
-    }
-}
-
 export default {
-    calculate,
+    calc,
 };
