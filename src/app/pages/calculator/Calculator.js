@@ -8,6 +8,12 @@ import Button from 'app/components/element/button/Button';
 // Util
 import { INT_NUMBERS } from 'app/util/keyCode';
 
+const OPERATORS = {
+    DEFAULT: '',
+    PLUS: '+',
+    MINUS: '-',
+};
+
 class Calculator extends Component {
     // Life Cycle
     constructor() {
@@ -16,6 +22,7 @@ class Calculator extends Component {
         this.state = {
             num: 0,
             currentNum: 0,
+            operator: OPERATORS.DEFAULT,
             shouldRefresh: false,
         };
     }
@@ -41,17 +48,19 @@ class Calculator extends Component {
         this.setState({
             num: num + currentNum,
             currentNum: num + currentNum,
+            operator: OPERATORS.PLUS,
             shouldRefresh: true,
         });
     }
 
     _handleMinusClick() {
-        let { num, currentNum, shouldRefresh } = this.state;
+        let { num, currentNum, shouldRefresh, operator } = this.state;
 
         if (currentNum === 0) {
             this.setState({
-                currentNum: num,
                 num: num,
+                currentNum: num,
+                operator: OPERATORS.MINUS,
                 shouldRefresh: true,
             });
 
@@ -61,6 +70,7 @@ class Calculator extends Component {
         this.setState({
             num: currentNum - num,
             currentNum: currentNum - num,
+            operator: OPERATORS.MINUS,
             shouldRefresh: true,
         });
     }
