@@ -13,4 +13,7 @@ export const KEYCODE_NUM = {
 
 export const KEYCODE_COMMON = {
     BACKSPACE: 8,
+    ESC: 27,
+    PLUS_OR_EQUAL: 187,
+    MINUS: 189,
 };

@@ -89,19 +89,19 @@ class Calculator extends Component {
     }
 
     _handleEscKeyDown(e) {
-        if (e.which === 27) {
+        if (e.which === KEYCODE_COMMON.ESC) {
             this._reset();
         }
     }
 
     _handlePlusKeyDown(e) {
-        if (e.shiftKey && e.which === 187) {
+        if (e.shiftKey && e.which === KEYCODE_COMMON.PLUS_OR_EQUAL) {
             this._add();
         }
     }
 
     _handleMinusKeyDown(e) {
-        if (e.which === 189) {
+        if (e.which === KEYCODE_COMMON.MINUS) {
             this._sub();
         }
     }
