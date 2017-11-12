@@ -23,10 +23,7 @@ class Calculator extends Component {
             shouldRefresh: false,
         };
 
-        this._add = this._add.bind(this);
-        this._sub = this._sub.bind(this);
         this._reset = this._reset.bind(this);
-        this._equal = this._equal.bind(this);
         this._operation = this._operation.bind(this);
         this._handleNumberKeyDown = this._handleNumberKeyDown.bind(this);
         this._handleBackspaceKeyDown = this._handleBackspaceKeyDown.bind(this);
@@ -171,42 +168,6 @@ class Calculator extends Component {
             currentNum: newNum,
             operator: newOperator,
             shouldRefresh,
-        });
-    }
-
-    _add() {
-        let { displayNum, currentNum, operator } = this.state,
-            newNum = calculation.calc(currentNum, displayNum, operator);
-
-        this.setState({
-            displayNum: newNum,
-            currentNum: newNum,
-            operator: OPERATORS.PLUS,
-            shouldRefresh: true,
-        });
-    }
-
-    _sub() {
-        let { displayNum, currentNum, operator } = this.state,
-            newNum = calculation.calc(currentNum, displayNum, operator);
-
-        this.setState({
-            displayNum: newNum,
-            currentNum: newNum,
-            operator: OPERATORS.MINUS,
-            shouldRefresh: true,
-        });
-    }
-
-    _equal() {
-        let { displayNum, currentNum, operator } = this.state,
-            newNum = calculation.calc(currentNum, displayNum, operator);
-
-        this.setState({
-            displayNum: newNum,
-            currentNum: newNum,
-            operator: OPERATORS.DEFAULT,
-            shouldRefresh: false,
         });
     }
 
