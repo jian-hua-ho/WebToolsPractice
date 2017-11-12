@@ -28,6 +28,7 @@ class Calculator extends Component {
         this._handleAddClick = this._handleAddClick.bind(this);
         this._handleSubClick = this._handleSubClick.bind(this);
         this._handleResetClick = this._handleResetClick.bind(this);
+        this._handleBtnClick = this._handleBtnClick.bind(this);
     }
 
     componentWillMount() {
@@ -97,22 +98,26 @@ class Calculator extends Component {
     }
 
     _handleBtnClick(numString) {
-        let { displayNum, shouldRefresh } = this.state,
-            value;
+        let that = this;
 
-        if (shouldRefresh) {
-            value = _.toNumber(numString);
-        } else {
-            let oriNumString = _.toString(displayNum),
-                resultString = oriNumString + numString;
+        return () => {
+            let { displayNum, shouldRefresh } = that.state,
+                value;
 
-            value = _.toNumber(resultString);
+            if (shouldRefresh) {
+                value = _.toNumber(numString);
+            } else {
+                let oriNumString = _.toString(displayNum),
+                    resultString = oriNumString + numString;
+
+                value = _.toNumber(resultString);
+            }
+
+            that.setState({
+                displayNum: value,
+                shouldRefresh: false,
+            });
         }
-
-        this.setState({
-            displayNum: value,
-            shouldRefresh: false,
-        });
     }
 
     _handleResetClick() {
@@ -132,16 +137,16 @@ class Calculator extends Component {
                     <NumberInput value={this.state.displayNum} />
                 </div>
                 <div>
-                    <Button onClick={this._handleBtnClick.bind(this, '1')}>1</Button>
-                    <Button onClick={this._handleBtnClick.bind(this, '2')}>2</Button>
-                    <Button onClick={this._handleBtnClick.bind(this, '3')}>3</Button>
-                    <Button onClick={this._handleBtnClick.bind(this, '4')}>4</Button>
-                    <Button onClick={this._handleBtnClick.bind(this, '5')}>5</Button>
-                    <Button onClick={this._handleBtnClick.bind(this, '6')}>6</Button>
-                    <Button onClick={this._handleBtnClick.bind(this, '7')}>7</Button>
-                    <Button onClick={this._handleBtnClick.bind(this, '8')}>8</Button>
-                    <Button onClick={this._handleBtnClick.bind(this, '9')}>9</Button>
-                    <Button onClick={this._handleBtnClick.bind(this, '0')}>0</Button>
+                    <Button onClick={this._handleBtnClick('1')}>1</Button>
+                    <Button onClick={this._handleBtnClick('2')}>2</Button>
+                    <Button onClick={this._handleBtnClick('3')}>3</Button>
+                    <Button onClick={this._handleBtnClick('4')}>4</Button>
+                    <Button onClick={this._handleBtnClick('5')}>5</Button>
+                    <Button onClick={this._handleBtnClick('6')}>6</Button>
+                    <Button onClick={this._handleBtnClick('7')}>7</Button>
+                    <Button onClick={this._handleBtnClick('8')}>8</Button>
+                    <Button onClick={this._handleBtnClick('9')}>9</Button>
+                    <Button onClick={this._handleBtnClick('0')}>0</Button>
                     <Button onClick={this._handleEqualClick} >=</Button>
                     <Button onClick={this._handleAddClick}>+</Button>
                     <Button onClick={this._handleSubClick}>-</Button>
