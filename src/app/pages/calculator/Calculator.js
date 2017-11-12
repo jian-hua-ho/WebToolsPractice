@@ -28,6 +28,7 @@ class Calculator extends Component {
         this._reset = this._reset.bind(this);
         this._handleNumberKeyDown = this._handleNumberKeyDown.bind(this);
         this._handleBackspaceKeyDown = this._handleBackspaceKeyDown.bind(this);
+        this._handleEscKeyDown = this._handleEscKeyDown.bind(this);
         this._handlePlusKeyDown = this._handlePlusKeyDown.bind(this);
         this._handleMinusKeyDown = this._handleMinusKeyDown.bind(this);
         this._handleEqualClick = this._handleEqualClick.bind(this);
@@ -40,6 +41,7 @@ class Calculator extends Component {
     componentWillMount() {
         window.document.addEventListener('keydown', this._handleNumberKeyDown, false);
         window.document.addEventListener('keydown', this._handleBackspaceKeyDown, false);
+        window.document.addEventListener('keydown', this._handleEscKeyDown, false);
         window.document.addEventListener('keydown', this._handlePlusKeyDown, false);
         window.document.addEventListener('keydown', this._handleMinusKeyDown, false);
     }
@@ -47,6 +49,7 @@ class Calculator extends Component {
     componentWillUnmount() {
         window.document.removeEventListener('keydown', this._handleNumberKeyDown, false);
         window.document.removeEventListener('keydown', this._handleBackspaceKeyDown, false);
+        window.document.removeEventListener('keydown', this._handleEscKeyDown, false);
         window.document.removeEventListener('keydown', this._handlePlusKeyDown, false);
         window.document.removeEventListener('keydown', this._handleMinusKeyDown, false);
     }
@@ -82,6 +85,12 @@ class Calculator extends Component {
             this.setState({
                 displayNum: result,
             });
+        }
+    }
+
+    _handleEscKeyDown(e) {
+        if (e.which === 27) {
+            this._reset();
         }
     }
 
