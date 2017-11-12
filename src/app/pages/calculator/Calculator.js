@@ -5,8 +5,8 @@ import _ from 'lodash';
 import NumberInput from 'app/components/form/number/NumberInput';
 import Button from 'app/components/element/button/Button';
 
-// Util
-import { INT_NUMBERS } from 'app/util/keyCode';
+// Constants
+import { KEYCODE_NUM } from 'app/constants/keyCode';
 
 // Helper
 import calculation, { OPERATORS } from 'app/helper/calculation';
@@ -56,7 +56,7 @@ class Calculator extends Component {
 
     // Event Handlers
     _handleNumberKeyDown(e) {
-        if (INT_NUMBERS.indexOf(e.which) < 0) {
+        if (Object.values(KEYCODE_NUM).indexOf(e.which) < 0) {
             return;
         }
 
