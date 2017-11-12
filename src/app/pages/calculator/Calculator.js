@@ -28,6 +28,7 @@ class Calculator extends Component {
         this._handleNumberKeyDown = this._handleNumberKeyDown.bind(this);
         this._handleBackspaceKeyDown = this._handleBackspaceKeyDown.bind(this);
         this._handlePlusKeyDown = this._handlePlusKeyDown.bind(this);
+        this._handleMinusKeyDown = this._handleMinusKeyDown.bind(this);
         this._handleEqualClick = this._handleEqualClick.bind(this);
         this._handleAddClick = this._handleAddClick.bind(this);
         this._handleSubClick = this._handleSubClick.bind(this);
@@ -39,12 +40,14 @@ class Calculator extends Component {
         window.document.addEventListener('keydown', this._handleNumberKeyDown, false);
         window.document.addEventListener('keydown', this._handleBackspaceKeyDown, false);
         window.document.addEventListener('keydown', this._handlePlusKeyDown, false);
+        window.document.addEventListener('keydown', this._handleMinusKeyDown, false);
     }
 
     componentWillUnmount() {
         window.document.removeEventListener('keydown', this._handleNumberKeyDown, false);
         window.document.removeEventListener('keydown', this._handleBackspaceKeyDown, false);
         window.document.removeEventListener('keydown', this._handlePlusKeyDown, false);
+        window.document.removeEventListener('keydown', this._handleMinusKeyDown, false);
     }
 
     // Event Handlers
@@ -84,6 +87,12 @@ class Calculator extends Component {
     _handlePlusKeyDown(e) {
         if (e.shiftKey && e.which === 187) {
             this._add();
+        }
+    }
+
+    _handleMinusKeyDown(e) {
+        if (e.which === 189) {
+            this._sub();
         }
     }
 
@@ -153,18 +162,8 @@ class Calculator extends Component {
     }
 
     _sub() {
-        let { displayNum, currentNum, operator } = this.state;
-
-        if (currentNum === 0) {
-            this.setState({
-                operator: OPERATORS.MINUS,
-                shouldRefresh: true,
-            });
-
-            return;
-        }
-
-        let newNum = calculation.calc(currentNum, displayNum, operator);
+        let { displayNum, currentNum, operator } = this.state,
+            newNum = calculation.calc(currentNum, displayNum, operator);
 
         this.setState({
             displayNum: newNum,
