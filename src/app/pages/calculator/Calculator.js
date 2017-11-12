@@ -25,6 +25,7 @@ class Calculator extends Component {
 
         this._handleNumberKeyDown = this._handleNumberKeyDown.bind(this);
         this._handleBackspaceKeyDown = this._handleBackspaceKeyDown.bind(this);
+        this._handlePlusKeyDown = this._handlePlusKeyDown.bind(this);
         this._handleEqualClick = this._handleEqualClick.bind(this);
         this._handleAddClick = this._handleAddClick.bind(this);
         this._handleSubClick = this._handleSubClick.bind(this);
@@ -33,30 +34,18 @@ class Calculator extends Component {
     }
 
     componentWillMount() {
-        window.document.addEventListener('keydown', this._handleBackspaceKeyDown, false);
         window.document.addEventListener('keydown', this._handleNumberKeyDown, false);
+        window.document.addEventListener('keydown', this._handleBackspaceKeyDown, false);
+        window.document.addEventListener('keydown', this._handlePlusKeyDown, false);
     }
 
     componentWillUnmount() {
-        window.document.removeEventListener('keydown', this._handleBackspaceKeyDown, false);
         window.document.removeEventListener('keydown', this._handleNumberKeyDown, false);
+        window.document.removeEventListener('keydown', this._handleBackspaceKeyDown, false);
+        window.document.removeEventListener('keydown', this._handlePlusKeyDown, false);
     }
 
     // Event Handlers
-    _handleBackspaceKeyDown(e) {
-        let { displayNum } = this.state,
-            oriNumStr = _.toString(displayNum);
-
-        if (e.which === 8) {
-            let resultString = oriNumStr === '0' ? oriNumStr : oriNumStr.slice(0, -1),
-                result = _.toNumber(resultString);
-
-            this.setState({
-                displayNum: result,
-            });
-        }
-    }
-
     _handleNumberKeyDown(e) {
         if (INT_NUMBERS.indexOf(e.which) < 0) {
             return;
@@ -75,6 +64,25 @@ class Calculator extends Component {
             displayNum: value,
             shouldRefresh: false,
         });
+    }
+
+    _handleBackspaceKeyDown(e) {
+        if (e.which === 8) {
+            let { displayNum } = this.state,
+                oriNumStr = _.toString(displayNum),
+                resultString = oriNumStr === '0' ? oriNumStr : oriNumStr.slice(0, -1),
+                result = _.toNumber(resultString);
+
+            this.setState({
+                displayNum: result,
+            });
+        }
+    }
+
+    _handlePlusKeyDown(e) {
+        if (e.shiftKey && e.which === 187) {
+            console.log('PLUS!!');
+        }
     }
 
     _handleEqualClick() {
