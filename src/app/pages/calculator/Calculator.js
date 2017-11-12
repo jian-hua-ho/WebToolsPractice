@@ -6,7 +6,7 @@ import NumberInput from 'app/components/form/number/NumberInput';
 import Button from 'app/components/element/button/Button';
 
 // Constants
-import { KEYCODE_NUM } from 'app/constants/keyCode';
+import { KEYCODE_NUM, KEYCODE_COMMON } from 'app/constants/keyCode';
 
 // Helper
 import calculation, { OPERATORS } from 'app/helper/calculation';
@@ -76,7 +76,7 @@ class Calculator extends Component {
     }
 
     _handleBackspaceKeyDown(e) {
-        if (e.which === 8) {
+        if (e.which === KEYCODE_COMMON.BACKSPACE) {
             let { displayNum } = this.state,
                 oriNumStr = _.toString(displayNum),
                 resultString = oriNumStr === '0' ? oriNumStr : oriNumStr.slice(0, -1),

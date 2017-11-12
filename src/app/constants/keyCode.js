@@ -10,3 +10,7 @@ export const KEYCODE_NUM = {
     EIGHT: 56,
     NINE: 57,
 };
+
+export const KEYCODE_COMMON = {
+    BACKSPACE: 8,
+};
