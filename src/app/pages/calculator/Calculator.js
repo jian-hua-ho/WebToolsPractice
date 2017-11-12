@@ -22,6 +22,16 @@ class Calculator extends Component {
             operator: OPERATORS.DEFAULT,
             shouldRefresh: false,
         };
+
+        this._handleNumberKeyDown = this._handleNumberKeyDown.bind(this);
+    }
+
+    componentWillMount() {
+        document.addEventListener('keydown', this._handleNumberKeyDown, false);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this._handleNumberKeyDown, false);
     }
 
     // Event Handlers
@@ -115,9 +125,7 @@ class Calculator extends Component {
         return (
             <div>
                 <div>
-                    <NumberInput
-                        value={this.state.displayNum}
-                        onKeyDown={this._handleNumberKeyDown.bind(this)} />
+                    <NumberInput value={this.state.displayNum} />
                 </div>
                 <div>
                     <Button onClick={this._handleBtnClick.bind(this, '1')}>1</Button>
