@@ -24,12 +24,12 @@ class Calculator extends Component {
         };
 
         this._handleNumberKeyDown = this._handleNumberKeyDown.bind(this);
+        this._handleBackspaceKeyDown = this._handleBackspaceKeyDown.bind(this);
         this._handleEqualClick = this._handleEqualClick.bind(this);
         this._handleAddClick = this._handleAddClick.bind(this);
         this._handleSubClick = this._handleSubClick.bind(this);
         this._handleResetClick = this._handleResetClick.bind(this);
         this._handleBtnClick = this._handleBtnClick.bind(this);
-        this._handleBackspaceKeyDown = this._handleBackspaceKeyDown.bind(this);
     }
 
     componentWillMount() {
@@ -58,13 +58,17 @@ class Calculator extends Component {
     }
 
     _handleNumberKeyDown(e) {
+        if (INT_NUMBERS.indexOf(e.which) < 0) {
+            return;
+        }
+
         let { displayNum, shouldRefresh } = this.state,
             value;
 
         if (shouldRefresh) {
-            value = _.toNumber(String.fromCharCode(keyCode));
+            value = _.toNumber(String.fromCharCode(e.which));
         } else {
-            value = _getResultValue(e.which, displayNum, shouldRefresh);
+            value = _getNum(e.which, displayNum, shouldRefresh);
         }
 
         this.setState({
@@ -180,17 +184,11 @@ class Calculator extends Component {
     }
 }
 
-function _getResultValue(keyCode, num, shouldRefresh) {
+function _getNum(keyCode, num, shouldRefresh) {
     let oriNumString = _.toString(num),
-        result;
-
-    if (INT_NUMBERS.indexOf(keyCode) > -1) {
-        let appendString = String.fromCharCode(keyCode);
-        let resultString = oriNumString === '0' ? appendString : oriNumString + appendString;
+        appendString = String.fromCharCode(keyCode),
+        resultString = oriNumString === '0' ? appendString : oriNumString + appendString,
         result = _.toNumber(resultString);
-    } else {
-        result = _.toNumber(oriNumString);
-    }
 
     return result;
 }
