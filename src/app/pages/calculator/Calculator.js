@@ -23,6 +23,7 @@ class Calculator extends Component {
             shouldRefresh: false,
         };
 
+        this._add = this._add.bind(this);
         this._handleNumberKeyDown = this._handleNumberKeyDown.bind(this);
         this._handleBackspaceKeyDown = this._handleBackspaceKeyDown.bind(this);
         this._handlePlusKeyDown = this._handlePlusKeyDown.bind(this);
@@ -81,7 +82,7 @@ class Calculator extends Component {
 
     _handlePlusKeyDown(e) {
         if (e.shiftKey && e.which === 187) {
-            console.log('PLUS!!');
+            this._add();
         }
     }
 
@@ -98,15 +99,7 @@ class Calculator extends Component {
     }
 
     _handleAddClick() {
-        let { displayNum, currentNum, operator } = this.state,
-            newNum = calculation.calc(currentNum, displayNum, operator);
-
-        this.setState({
-            displayNum: newNum,
-            currentNum: newNum,
-            operator: OPERATORS.PLUS,
-            shouldRefresh: true,
-        });
+        this._add();
     }
 
     _handleSubClick() {
@@ -161,6 +154,19 @@ class Calculator extends Component {
             currentNum: 0,
             operator: OPERATORS.DEFAULT,
             shouldRefresh: false,
+        });
+    }
+
+    // Helpers
+    _add() {
+        let { displayNum, currentNum, operator } = this.state,
+            newNum = calculation.calc(currentNum, displayNum, operator);
+
+        this.setState({
+            displayNum: newNum,
+            currentNum: newNum,
+            operator: OPERATORS.PLUS,
+            shouldRefresh: true,
         });
     }
 
