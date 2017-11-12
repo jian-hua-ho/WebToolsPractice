@@ -16,4 +16,5 @@ export const KEYCODE_COMMON = {
     ESC: 27,
     PLUS_OR_EQUAL: 187,
     MINUS: 189,
+    ENTER: 13,
 };
