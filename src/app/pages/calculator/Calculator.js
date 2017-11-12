@@ -36,22 +36,24 @@ class Calculator extends Component {
     }
 
     _handleEqualClick() {
-        let { displayNum, currentNum, operator } = this.state;
+        let { displayNum, currentNum, operator } = this.state,
+            newNum = calculation.calc(currentNum, displayNum, operator);
 
         this.setState({
-            displayNum: calculation.calc(currentNum, displayNum, operator),
-            currentNum: calculation.calc(currentNum, displayNum, operator),
+            displayNum: newNum,
+            currentNum: newNum,
             operator: OPERATORS.DEFAULT,
             shouldRefresh: false,
         })
     }
 
     _handlePlusClick() {
-        let { displayNum, currentNum, operator } = this.state;
+        let { displayNum, currentNum, operator } = this.state,
+            newNum = calculation.calc(currentNum, displayNum, operator);
 
         this.setState({
-            displayNum: calculation.calc(currentNum, displayNum, operator),
-            currentNum: calculation.calc(currentNum, displayNum, operator),
+            displayNum: newNum,
+            currentNum: newNum,
             operator: OPERATORS.PLUS,
             shouldRefresh: true,
         });
@@ -70,9 +72,11 @@ class Calculator extends Component {
             return;
         }
 
+        let newNum = calculation.calc(currentNum, displayNum, operator);
+
         this.setState({
-            displayNum: calculation.calc(currentNum, displayNum, operator),
-            currentNum: calculation.calc(currentNum, displayNum, operator),
+            displayNum: newNum,
+            currentNum: newNum,
             operator: OPERATORS.MINUS,
             shouldRefresh: true,
         });

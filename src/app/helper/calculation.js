@@ -1,12 +1,12 @@
 
-function calc(currentNum, num, operator) {
+function calc(currentNum, displayNum, operator) {
     switch (operator) {
         case OPERATORS.PLUS:
-            return currentNum + num;
+            return currentNum + displayNum;
         case OPERATORS.MINUS:
-            return currentNum - num;
+            return currentNum - displayNum;
         default:
-            return num;
+            return displayNum;
     }
 }
 
