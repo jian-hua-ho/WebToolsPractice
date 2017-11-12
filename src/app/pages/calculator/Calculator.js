@@ -29,20 +29,43 @@ class Calculator extends Component {
         this._handleSubClick = this._handleSubClick.bind(this);
         this._handleResetClick = this._handleResetClick.bind(this);
         this._handleBtnClick = this._handleBtnClick.bind(this);
+        this._handleBackspaceKeyDown = this._handleBackspaceKeyDown.bind(this);
     }
 
     componentWillMount() {
-        document.addEventListener('keydown', this._handleNumberKeyDown, false);
+        window.document.addEventListener('keydown', this._handleBackspaceKeyDown, false);
+        window.document.addEventListener('keydown', this._handleNumberKeyDown, false);
     }
 
     componentWillUnmount() {
-        document.removeEventListener('keydown', this._handleNumberKeyDown, false);
+        window.document.removeEventListener('keydown', this._handleBackspaceKeyDown, false);
+        window.document.removeEventListener('keydown', this._handleNumberKeyDown, false);
     }
 
     // Event Handlers
+    _handleBackspaceKeyDown(e) {
+        let { displayNum } = this.state,
+            oriNumStr = _.toString(displayNum);
+
+        if (e.which === 8) {
+            let resultString = oriNumStr === '0' ? oriNumStr : oriNumStr.slice(0, -1),
+                result = _.toNumber(resultString);
+
+            this.setState({
+                displayNum: result,
+            });
+        }
+    }
+
     _handleNumberKeyDown(e) {
         let { displayNum, shouldRefresh } = this.state,
+            value;
+
+        if (shouldRefresh) {
+            value = _.toNumber(String.fromCharCode(keyCode));
+        } else {
             value = _getResultValue(e.which, displayNum, shouldRefresh);
+        }
 
         this.setState({
             displayNum: value,
@@ -161,14 +184,7 @@ function _getResultValue(keyCode, num, shouldRefresh) {
     let oriNumString = _.toString(num),
         result;
 
-    if (shouldRefresh) {
-        return _.toNumber(String.fromCharCode(keyCode));
-    }
-
-    if (keyCode === 8) {
-        let resultString = oriNumString === '0' ? oriNumString : oriNumString.slice(0, -1);
-        result = _.toNumber(resultString);
-    } else if (INT_NUMBERS.indexOf(keyCode) > -1) {
+    if (INT_NUMBERS.indexOf(keyCode) > -1) {
         let appendString = String.fromCharCode(keyCode);
         let resultString = oriNumString === '0' ? appendString : oriNumString + appendString;
         result = _.toNumber(resultString);
