@@ -24,6 +24,10 @@ class Calculator extends Component {
         };
 
         this._handleNumberKeyDown = this._handleNumberKeyDown.bind(this);
+        this._handleEqualClick = this._handleEqualClick.bind(this);
+        this._handleAddClick = this._handleAddClick.bind(this);
+        this._handleSubClick = this._handleSubClick.bind(this);
+        this._handleResetClick = this._handleResetClick.bind(this);
     }
 
     componentWillMount() {
@@ -57,7 +61,7 @@ class Calculator extends Component {
         })
     }
 
-    _handlePlusClick() {
+    _handleAddClick() {
         let { displayNum, currentNum, operator } = this.state,
             newNum = calculation.calc(currentNum, displayNum, operator);
 
@@ -69,7 +73,7 @@ class Calculator extends Component {
         });
     }
 
-    _handleMinusClick() {
+    _handleSubClick() {
         let { displayNum, currentNum, operator } = this.state;
 
         if (currentNum === 0) {
@@ -138,10 +142,10 @@ class Calculator extends Component {
                     <Button onClick={this._handleBtnClick.bind(this, '8')}>8</Button>
                     <Button onClick={this._handleBtnClick.bind(this, '9')}>9</Button>
                     <Button onClick={this._handleBtnClick.bind(this, '0')}>0</Button>
-                    <Button onClick={this._handleEqualClick.bind(this)} >=</Button>
-                    <Button onClick={this._handlePlusClick.bind(this)}>+</Button>
-                    <Button onClick={this._handleMinusClick.bind(this)}>-</Button>
-                    <Button onClick={this._handleResetClick.bind(this)}>RESET</Button>
+                    <Button onClick={this._handleEqualClick} >=</Button>
+                    <Button onClick={this._handleAddClick}>+</Button>
+                    <Button onClick={this._handleSubClick}>-</Button>
+                    <Button onClick={this._handleResetClick}>RESET</Button>
                 </div>
             </div>
         );
