@@ -6,10 +6,10 @@ import NumberInput from 'app/components/form/number/NumberInput';
 import Button from 'app/components/element/button/Button';
 
 // Constants
-import { KEYCODE_NUM, KEYCODE_COMMON } from 'app/constants/keyCode';
+import { KEYCODE_NUM, KEYCODE_COMMON } from 'constants/keyCode';
 
 // Helper
-import calculation, { OPERATORS } from 'app/helper/calculation';
+import calculation, { OPERATORS } from 'helper/calculation';
 
 class Calculator extends Component {
     // Life Cycle
