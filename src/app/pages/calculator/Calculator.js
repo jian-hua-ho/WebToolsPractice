@@ -24,6 +24,7 @@ class Calculator extends Component {
         };
 
         this._add = this._add.bind(this);
+        this._sub = this._sub.bind(this);
         this._handleNumberKeyDown = this._handleNumberKeyDown.bind(this);
         this._handleBackspaceKeyDown = this._handleBackspaceKeyDown.bind(this);
         this._handlePlusKeyDown = this._handlePlusKeyDown.bind(this);
@@ -103,26 +104,7 @@ class Calculator extends Component {
     }
 
     _handleSubClick() {
-        let { displayNum, currentNum, operator } = this.state;
-
-        if (currentNum === 0) {
-            this.setState({
-                currentNum: displayNum,
-                operator: OPERATORS.MINUS,
-                shouldRefresh: true,
-            });
-
-            return;
-        }
-
-        let newNum = calculation.calc(currentNum, displayNum, operator);
-
-        this.setState({
-            displayNum: newNum,
-            currentNum: newNum,
-            operator: OPERATORS.MINUS,
-            shouldRefresh: true,
-        });
+        this._sub();
     }
 
     _handleBtnClick(numString) {
@@ -166,6 +148,28 @@ class Calculator extends Component {
             displayNum: newNum,
             currentNum: newNum,
             operator: OPERATORS.PLUS,
+            shouldRefresh: true,
+        });
+    }
+
+    _sub() {
+        let { displayNum, currentNum, operator } = this.state;
+
+        if (currentNum === 0) {
+            this.setState({
+                operator: OPERATORS.MINUS,
+                shouldRefresh: true,
+            });
+
+            return;
+        }
+
+        let newNum = calculation.calc(currentNum, displayNum, operator);
+
+        this.setState({
+            displayNum: newNum,
+            currentNum: newNum,
+            operator: OPERATORS.MINUS,
             shouldRefresh: true,
         });
     }
