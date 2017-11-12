@@ -25,6 +25,7 @@ class Calculator extends Component {
 
         this._add = this._add.bind(this);
         this._sub = this._sub.bind(this);
+        this._reset = this._reset.bind(this);
         this._handleNumberKeyDown = this._handleNumberKeyDown.bind(this);
         this._handleBackspaceKeyDown = this._handleBackspaceKeyDown.bind(this);
         this._handlePlusKeyDown = this._handlePlusKeyDown.bind(this);
@@ -140,12 +141,7 @@ class Calculator extends Component {
     }
 
     _handleResetClick() {
-        this.setState({
-            displayNum: 0,
-            currentNum: 0,
-            operator: OPERATORS.DEFAULT,
-            shouldRefresh: false,
-        });
+        this._reset();
     }
 
     // Helpers
@@ -170,6 +166,15 @@ class Calculator extends Component {
             currentNum: newNum,
             operator: OPERATORS.MINUS,
             shouldRefresh: true,
+        });
+    }
+
+    _reset() {
+        this.setState({
+            displayNum: 0,
+            currentNum: 0,
+            operator: OPERATORS.DEFAULT,
+            shouldRefresh: false,
         });
     }
 
