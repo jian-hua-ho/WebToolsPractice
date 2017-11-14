@@ -11,6 +11,9 @@ import { KEYCODE_NUM, KEYCODE_COMMON } from 'constants/keyCode';
 // Helper
 import calculation, { OPERATORS } from 'helper/calculation';
 
+// Styles
+import styles from './styles';
+
 class Calculator extends Component {
     // Life Cycle
     constructor() {
