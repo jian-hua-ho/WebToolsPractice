@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 
 // Components
-import NumberInput from 'app/components/form/number/NumberInput';
-import Button from 'app/components/element/button/Button';
+import NumberInput from './components/form/number/NumberInput';
+import Button from './components/element/button/Button';
 
 // Constants
 import { KEYCODE_NUM, KEYCODE_COMMON } from 'constants/keyCode';
