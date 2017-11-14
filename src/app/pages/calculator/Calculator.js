@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import cx from 'classnames';
 import _ from 'lodash';
 
 // Components
@@ -186,40 +187,38 @@ class Calculator extends Component {
     // Render
     render() {
         return (
-            <div>
-                <div>
+            <div className={styles.container}>
+                <div className={styles.row}>
                     <NumberInput value={this.state.displayNum} />
                 </div>
-                <div>
-                    <div>
-                        <Button onClick={this._handleResetClick}>AC</Button>
-                        <Button>+/-</Button>
-                        <Button>%</Button>
-                        <Button>/</Button>
-                    </div>
-                    <div>
-                        <Button onClick={this._handleBtnClick('7')}>7</Button>
-                        <Button onClick={this._handleBtnClick('8')}>8</Button>
-                        <Button onClick={this._handleBtnClick('9')}>9</Button>
-                        <Button>*</Button>
-                    </div>
-                    <div>
-                        <Button onClick={this._handleBtnClick('4')}>4</Button>
-                        <Button onClick={this._handleBtnClick('5')}>5</Button>
-                        <Button onClick={this._handleBtnClick('6')}>6</Button>
-                        <Button onClick={this._handleSubClick}>-</Button>
-                    </div>
-                    <div>
-                        <Button onClick={this._handleBtnClick('1')}>1</Button>
-                        <Button onClick={this._handleBtnClick('2')}>2</Button>
-                        <Button onClick={this._handleBtnClick('3')}>3</Button>
-                        <Button onClick={this._handleAddClick}>+</Button>
-                    </div>
-                    <div>
-                        <Button onClick={this._handleBtnClick('0')}>0</Button>
-                        <Button>.</Button>
-                        <Button onClick={this._handleEqualClick}>=</Button>
-                    </div>
+                <div className={styles.row}>
+                    <Button onClick={this._handleResetClick}>AC</Button>
+                    <Button>+/-</Button>
+                    <Button>%</Button>
+                    <Button>/</Button>
+                </div>
+                <div className={styles.row}>
+                    <Button onClick={this._handleBtnClick('7')}>7</Button>
+                    <Button onClick={this._handleBtnClick('8')}>8</Button>
+                    <Button onClick={this._handleBtnClick('9')}>9</Button>
+                    <Button>*</Button>
+                </div>
+                <div className={styles.row}>
+                    <Button onClick={this._handleBtnClick('4')}>4</Button>
+                    <Button onClick={this._handleBtnClick('5')}>5</Button>
+                    <Button onClick={this._handleBtnClick('6')}>6</Button>
+                    <Button onClick={this._handleSubClick}>-</Button>
+                </div>
+                <div className={styles.row}>
+                    <Button onClick={this._handleBtnClick('1')}>1</Button>
+                    <Button onClick={this._handleBtnClick('2')}>2</Button>
+                    <Button onClick={this._handleBtnClick('3')}>3</Button>
+                    <Button onClick={this._handleAddClick}>+</Button>
+                </div>
+                <div className={styles.row}>
+                    <Button onClick={this._handleBtnClick('0')}>0</Button>
+                    <Button>.</Button>
+                    <Button onClick={this._handleEqualClick}>=</Button>
                 </div>
             </div>
         );
