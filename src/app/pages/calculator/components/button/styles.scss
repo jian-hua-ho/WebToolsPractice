@@ -1,5 +1,4 @@
 .button {
-    width: 50px;
     height: 50px;
     border: none;
     font-size: 20px;
@@ -7,7 +6,31 @@
     margin: 2.5px;
 }
 
-.default {
+// Width
+.small {
+    width: 50px;
+}
+
+.medium {
+    width: 105px;
+}
+
+.large {
+    width: 160px;
+}
+
+// Type
+.orange {
     color: #FFF;
     background-color: #DB7F00;
+}
+
+.gray {
+    color: #000;
+    background-color: #DDD
+}
+
+.black {
+    color: #FFF;
+    background-color: #333;
 }
