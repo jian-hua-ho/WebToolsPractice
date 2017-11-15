@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
+import styles from './styles';
+
 // Components
 import Root from 'app/pages/root/Root';
 import Calculator from 'app/pages/calculator/Calculator';

@@ -3,8 +3,8 @@ import cx from 'classnames';
 import _ from 'lodash';
 
 // Components
-import NumberInput from './components/form/number/NumberInput';
-import Button from './components/element/button/Button';
+import NumberInput from './components/number/NumberInput';
+import Button from './components/button/Button';
 
 // Constants
 import { KEYCODE_NUM, KEYCODE_COMMON } from 'constants/keyCode';
@@ -189,7 +189,7 @@ class Calculator extends Component {
         return (
             <div className={styles.container}>
                 <div className={styles.row}>
-                    <NumberInput value={this.state.displayNum} />
+                    <NumberInput className={styles.numbebr} value={this.state.displayNum} />
                 </div>
                 <div className={styles.row}>
                     <Button onClick={this._handleResetClick}>AC</Button>

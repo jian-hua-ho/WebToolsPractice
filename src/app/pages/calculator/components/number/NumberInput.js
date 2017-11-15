@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
+import styles from './styles';
+
 const NumberInput = ({ value, onKeyDown, max, min, placeholder }) => {
     return (
         <input
+            className={styles.number}
             type="number"
             value={value}
             max={max}
