@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
+import cx from 'classnames';
 import _ from 'lodash';
 
 // Components
-import NumberInput from 'app/components/form/number/NumberInput';
-import Button from 'app/components/element/button/Button';
+import NumberInput from './components/number/NumberInput';
+import Button from './components/button/Button';
 
 // Constants
 import { KEYCODE_NUM, KEYCODE_COMMON } from 'constants/keyCode';
 
 // Helper
 import calculation, { OPERATORS } from 'helper/calculation';
+
+// Styles
+import styles from './styles';
 
 class Calculator extends Component {
     // Life Cycle
@@ -183,25 +187,38 @@ class Calculator extends Component {
     // Render
     render() {
         return (
-            <div>
-                <div>
-                    <NumberInput value={this.state.displayNum} />
+            <div className={styles.container}>
+                <div className={styles.row}>
+                    <NumberInput className={styles.numbebr} value={this.state.displayNum} />
                 </div>
-                <div>
-                    <Button onClick={this._handleBtnClick('1')}>1</Button>
-                    <Button onClick={this._handleBtnClick('2')}>2</Button>
-                    <Button onClick={this._handleBtnClick('3')}>3</Button>
-                    <Button onClick={this._handleBtnClick('4')}>4</Button>
-                    <Button onClick={this._handleBtnClick('5')}>5</Button>
-                    <Button onClick={this._handleBtnClick('6')}>6</Button>
-                    <Button onClick={this._handleBtnClick('7')}>7</Button>
-                    <Button onClick={this._handleBtnClick('8')}>8</Button>
-                    <Button onClick={this._handleBtnClick('9')}>9</Button>
-                    <Button onClick={this._handleBtnClick('0')}>0</Button>
-                    <Button onClick={this._handleEqualClick} >=</Button>
-                    <Button onClick={this._handleAddClick}>+</Button>
-                    <Button onClick={this._handleSubClick}>-</Button>
-                    <Button onClick={this._handleResetClick}>RESET</Button>
+                <div className={styles.row}>
+                    <Button type="gray" onClick={this._handleResetClick}>AC</Button>
+                    <Button type="gray">+/-</Button>
+                    <Button type="gray">%</Button>
+                    <Button type="orange">/</Button>
+                </div>
+                <div className={styles.row}>
+                    <Button type="black" onClick={this._handleBtnClick('7')}>7</Button>
+                    <Button type="black" onClick={this._handleBtnClick('8')}>8</Button>
+                    <Button type="black" onClick={this._handleBtnClick('9')}>9</Button>
+                    <Button type="orange">*</Button>
+                </div>
+                <div className={styles.row}>
+                    <Button type="black" onClick={this._handleBtnClick('4')}>4</Button>
+                    <Button type="black" onClick={this._handleBtnClick('5')}>5</Button>
+                    <Button type="black" onClick={this._handleBtnClick('6')}>6</Button>
+                    <Button type="orange" onClick={this._handleSubClick}>-</Button>
+                </div>
+                <div className={styles.row}>
+                    <Button type="black" onClick={this._handleBtnClick('1')}>1</Button>
+                    <Button type="black" onClick={this._handleBtnClick('2')}>2</Button>
+                    <Button type="black" onClick={this._handleBtnClick('3')}>3</Button>
+                    <Button type="orange" onClick={this._handleAddClick}>+</Button>
+                </div>
+                <div className={styles.row}>
+                    <Button type="black" onClick={this._handleBtnClick('0')}>0</Button>
+                    <Button type="black" width="medium">.</Button>
+                    <Button type="orange" onClick={this._handleEqualClick}>=</Button>
                 </div>
             </div>
         );
