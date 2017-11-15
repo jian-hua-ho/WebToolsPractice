@@ -193,15 +193,15 @@ class Calculator extends Component {
                 </div>
                 <div className={styles.row}>
                     <Button type="gray" onClick={this._handleResetClick}>AC</Button>
-                    <Button type="gray">+/-</Button>
+                    <Button type="gray">&plusmn;</Button>
                     <Button type="gray">%</Button>
-                    <Button type="orange">/</Button>
+                    <Button type="orange">&divide;</Button>
                 </div>
                 <div className={styles.row}>
                     <Button type="black" onClick={this._handleBtnClick('7')}>7</Button>
                     <Button type="black" onClick={this._handleBtnClick('8')}>8</Button>
                     <Button type="black" onClick={this._handleBtnClick('9')}>9</Button>
-                    <Button type="orange">*</Button>
+                    <Button type="orange">&times;</Button>
                 </div>
                 <div className={styles.row}>
                     <Button type="black" onClick={this._handleBtnClick('4')}>4</Button>
