@@ -67,7 +67,7 @@ class Calculator extends Component {
 
     // Event Handlers
     _handleNumberKeyDown(e) {
-        if (Object.values(KEYCODE_NUM).indexOf(e.which) < 0) {
+        if (e.shiftKey || Object.values(KEYCODE_NUM).indexOf(e.which) < 0) {
             return;
         }
 
