@@ -40,6 +40,7 @@ class Calculator extends Component {
         this._handleAddClick = this._handleAddClick.bind(this);
         this._handleSubClick = this._handleSubClick.bind(this);
         this._handleDivideClick = this._handleDivideClick.bind(this);
+        this._handleTimesClick = this._handleTimesClick.bind(this);
         this._handleResetClick = this._handleResetClick.bind(this);
         this._handleBtnClick = this._handleBtnClick.bind(this);
     }
@@ -144,6 +145,10 @@ class Calculator extends Component {
         this._operation(OPERATORS.DIVIDE);
     }
 
+    _handleTimesClick() {
+        this._operation(OPERATORS.TIMES);
+    }
+
     _handleBtnClick(numString) {
         let that = this;
 
@@ -215,7 +220,7 @@ class Calculator extends Component {
                     <Button type="black" onClick={this._handleBtnClick('7')}>7</Button>
                     <Button type="black" onClick={this._handleBtnClick('8')}>8</Button>
                     <Button type="black" onClick={this._handleBtnClick('9')}>9</Button>
-                    <Button type="orange">&times;</Button>
+                    <Button type="orange" onClick={this._handleTimesClick}>&times;</Button>
                 </div>
                 <div className={styles.row}>
                     <Button type="black" onClick={this._handleBtnClick('4')}>4</Button>

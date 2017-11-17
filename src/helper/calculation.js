@@ -7,6 +7,8 @@ function calc(currentNum, displayNum, operator) {
             return currentNum - displayNum;
         case OPERATORS.DIVIDE:
             return currentNum / displayNum;
+        case OPERATORS.TIMES:
+            return currentNum * displayNum;
         default:
             return displayNum;
     }
@@ -17,6 +19,7 @@ export const OPERATORS = {
     PLUS: '+',
     MINUS: '-',
     DIVIDE: '/',
+    TIMES: '*',
 };
 
 export default {
