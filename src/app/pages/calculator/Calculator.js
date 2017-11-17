@@ -36,6 +36,7 @@ class Calculator extends Component {
         this._handleMinusKeyDown = this._handleMinusKeyDown.bind(this);
         this._handleEnterKeyDown = this._handleEnterKeyDown.bind(this);
         this._handleDivideKeyDown = this._handleDivideKeyDown.bind(this);
+        this._handleTimesKeyDown = this._handleTimesKeyDown.bind(this);
         this._handleEqualClick = this._handleEqualClick.bind(this);
         this._handleAddClick = this._handleAddClick.bind(this);
         this._handleSubClick = this._handleSubClick.bind(this);
@@ -53,6 +54,7 @@ class Calculator extends Component {
         window.document.addEventListener('keydown', this._handleMinusKeyDown, false);
         window.document.addEventListener('keydown', this._handleEnterKeyDown, false);
         window.document.addEventListener('keydown', this._handleDivideKeyDown, false);
+        window.document.addEventListener('keydown', this._handleTimesKeyDown, false);
     }
 
     componentWillUnmount() {
@@ -63,6 +65,7 @@ class Calculator extends Component {
         window.document.removeEventListener('keydown', this._handleMinusKeyDown, false);
         window.document.removeEventListener('keydown', this._handleEnterKeyDown, false);
         window.document.removeEventListener('keydown', this._handleDivideKeyDown, false);
+        window.document.removeEventListener('keydown', this._handleTimesKeyDown, false);
     }
 
     // Event Handlers
@@ -120,6 +123,12 @@ class Calculator extends Component {
     _handleDivideKeyDown(e) {
         if (e.which === KEYCODE_COMMON.DIVIDE) {
             this._operation(OPERATORS.DIVIDE);
+        }
+    }
+
+    _handleTimesKeyDown(e) {
+        if (e.shiftKey && e.which === KEYCODE_COMMON.TIMES) {
+            this._operation(OPERATORS.TIMES);
         }
     }
 
