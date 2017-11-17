@@ -70,7 +70,7 @@ const Button = ({ children, onClick, type, width }) => {
 Button.propTypes = {
     onClick: PropTypes.func,
     type: PropTypes.string,
-    width: PropTypes.number,
+    width: PropTypes.string,
 };
 
 Button.defaultProps = {
