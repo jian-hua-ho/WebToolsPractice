@@ -35,9 +35,14 @@ class Calculator extends Component {
         this._handlePlusKeyDown = this._handlePlusKeyDown.bind(this);
         this._handleMinusKeyDown = this._handleMinusKeyDown.bind(this);
         this._handleEnterKeyDown = this._handleEnterKeyDown.bind(this);
+        this._handleDivideKeyDown = this._handleDivideKeyDown.bind(this);
+        this._handleTimesKeyDown = this._handleTimesKeyDown.bind(this);
         this._handleEqualClick = this._handleEqualClick.bind(this);
         this._handleAddClick = this._handleAddClick.bind(this);
         this._handleSubClick = this._handleSubClick.bind(this);
+        this._handleDivideClick = this._handleDivideClick.bind(this);
+        this._handleTimesClick = this._handleTimesClick.bind(this);
+        this._handlePlusmnClick = this._handlePlusmnClick.bind(this);
         this._handleResetClick = this._handleResetClick.bind(this);
         this._handleBtnClick = this._handleBtnClick.bind(this);
     }
@@ -49,6 +54,8 @@ class Calculator extends Component {
         window.document.addEventListener('keydown', this._handlePlusKeyDown, false);
         window.document.addEventListener('keydown', this._handleMinusKeyDown, false);
         window.document.addEventListener('keydown', this._handleEnterKeyDown, false);
+        window.document.addEventListener('keydown', this._handleDivideKeyDown, false);
+        window.document.addEventListener('keydown', this._handleTimesKeyDown, false);
     }
 
     componentWillUnmount() {
@@ -58,11 +65,13 @@ class Calculator extends Component {
         window.document.removeEventListener('keydown', this._handlePlusKeyDown, false);
         window.document.removeEventListener('keydown', this._handleMinusKeyDown, false);
         window.document.removeEventListener('keydown', this._handleEnterKeyDown, false);
+        window.document.removeEventListener('keydown', this._handleDivideKeyDown, false);
+        window.document.removeEventListener('keydown', this._handleTimesKeyDown, false);
     }
 
     // Event Handlers
     _handleNumberKeyDown(e) {
-        if (Object.values(KEYCODE_NUM).indexOf(e.which) < 0) {
+        if (e.shiftKey || Object.values(KEYCODE_NUM).indexOf(e.which) < 0) {
             return;
         }
 
@@ -112,6 +121,18 @@ class Calculator extends Component {
         }
     }
 
+    _handleDivideKeyDown(e) {
+        if (e.which === KEYCODE_COMMON.DIVIDE) {
+            this._operation(OPERATORS.DIVIDE);
+        }
+    }
+
+    _handleTimesKeyDown(e) {
+        if (e.shiftKey && e.which === KEYCODE_COMMON.TIMES) {
+            this._operation(OPERATORS.TIMES);
+        }
+    }
+
     _handleEnterKeyDown(e) {
         if (e.which === KEYCODE_COMMON.ENTER) {
             this._operation(OPERATORS.DEFAULT);
@@ -128,6 +149,22 @@ class Calculator extends Component {
 
     _handleSubClick() {
         this._operation(OPERATORS.MINUS);
+    }
+
+    _handleDivideClick() {
+        this._operation(OPERATORS.DIVIDE);
+    }
+
+    _handleTimesClick() {
+        this._operation(OPERATORS.TIMES);
+    }
+
+    _handlePlusmnClick() {
+        let { displayNum } = this.state;
+
+        this.setState({
+            displayNum: displayNum * -1,
+        });
     }
 
     _handleBtnClick(numString) {
@@ -193,15 +230,15 @@ class Calculator extends Component {
                 </div>
                 <div className={styles.row}>
                     <Button type="gray" onClick={this._handleResetClick}>AC</Button>
-                    <Button type="gray">&plusmn;</Button>
+                    <Button type="gray" onClick={this._handlePlusmnClick}>&plusmn;</Button>
                     <Button type="gray">%</Button>
-                    <Button type="orange">&divide;</Button>
+                    <Button type="orange" onClick={this._handleDivideClick}>&divide;</Button>
                 </div>
                 <div className={styles.row}>
                     <Button type="black" onClick={this._handleBtnClick('7')}>7</Button>
                     <Button type="black" onClick={this._handleBtnClick('8')}>8</Button>
                     <Button type="black" onClick={this._handleBtnClick('9')}>9</Button>
-                    <Button type="orange">&times;</Button>
+                    <Button type="orange" onClick={this._handleTimesClick}>&times;</Button>
                 </div>
                 <div className={styles.row}>
                     <Button type="black" onClick={this._handleBtnClick('4')}>4</Button>
