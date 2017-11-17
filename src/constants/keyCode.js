@@ -17,4 +17,5 @@ export const KEYCODE_COMMON = {
     PLUS_OR_EQUAL: 187,
     MINUS: 189,
     ENTER: 13,
+    DIVIDE: 191,
 };
