@@ -6,9 +6,9 @@ function calc(currentNum, displayNum, operator) {
         case OPERATORS.MINUS:
             return currentNum - displayNum;
         case OPERATORS.DIVIDE:
-            return currentNum / displayNum;
+            return window.parseFloat((currentNum / displayNum).toFixed(9));
         case OPERATORS.TIMES:
-            return currentNum * displayNum;
+            return window.parseFloat((currentNum * displayNum).toFixed(9));
         default:
             return displayNum;
     }
