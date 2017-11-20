@@ -20,6 +20,9 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
     },
 
+    // Dev tool setting
+    devtool: 'inline-source-map',
+
     // Dev Server Setting
     devServer: {
         disableHostCheck: true,
