@@ -38,6 +38,7 @@ class Calculator extends Component {
         this._handleDivideKeyDown = this._handleDivideKeyDown.bind(this);
         this._handleTimesKeyDown = this._handleTimesKeyDown.bind(this);
         this._handleEqualClick = this._handleEqualClick.bind(this);
+        this._handleDotClick = this._handleDotClick.bind(this);
         this._handleAddClick = this._handleAddClick.bind(this);
         this._handleSubClick = this._handleSubClick.bind(this);
         this._handleDivideClick = this._handleDivideClick.bind(this);
@@ -142,6 +143,10 @@ class Calculator extends Component {
 
     _handleEqualClick() {
         this._operation(OPERATORS.DEFAULT);
+    }
+
+    _handleDotClick() {
+        console.log('DOT!!!');
     }
 
     _handleAddClick() {
@@ -265,7 +270,7 @@ class Calculator extends Component {
                     </div>
                     <div className={styles.row}>
                         <Button type="black" onClick={this._handleNumBtnClick('0')}>0</Button>
-                        <Button type="black" width="medium">.</Button>
+                        <Button type="black" width="medium" onClick={this._handleDotClick}>.</Button>
                         <Button type="orange" onClick={this._handleEqualClick}>=</Button>
                     </div>
                 </div>
