@@ -45,7 +45,7 @@ class Calculator extends Component {
         this._handlePlusmnClick = this._handlePlusmnClick.bind(this);
         this._handlePercentClick = this._handlePercentClick.bind(this);
         this._handleResetClick = this._handleResetClick.bind(this);
-        this._handleBtnClick = this._handleBtnClick.bind(this);
+        this._handleNumBtnClick = this._handleNumBtnClick.bind(this);
     }
 
     componentWillMount() {
@@ -177,7 +177,7 @@ class Calculator extends Component {
         });
     }
 
-    _handleBtnClick(numString) {
+    _handleNumBtnClick(numString) {
         let that = this;
 
         return () => {
@@ -246,25 +246,25 @@ class Calculator extends Component {
                         <Button type="orange" onClick={this._handleDivideClick}>&divide;</Button>
                     </div>
                     <div className={styles.row}>
-                        <Button type="black" onClick={this._handleBtnClick('7')}>7</Button>
-                        <Button type="black" onClick={this._handleBtnClick('8')}>8</Button>
-                        <Button type="black" onClick={this._handleBtnClick('9')}>9</Button>
+                        <Button type="black" onClick={this._handleNumBtnClick('7')}>7</Button>
+                        <Button type="black" onClick={this._handleNumBtnClick('8')}>8</Button>
+                        <Button type="black" onClick={this._handleNumBtnClick('9')}>9</Button>
                         <Button type="orange" onClick={this._handleTimesClick}>&times;</Button>
                     </div>
                     <div className={styles.row}>
-                        <Button type="black" onClick={this._handleBtnClick('4')}>4</Button>
-                        <Button type="black" onClick={this._handleBtnClick('5')}>5</Button>
-                        <Button type="black" onClick={this._handleBtnClick('6')}>6</Button>
+                        <Button type="black" onClick={this._handleNumBtnClick('4')}>4</Button>
+                        <Button type="black" onClick={this._handleNumBtnClick('5')}>5</Button>
+                        <Button type="black" onClick={this._handleNumBtnClick('6')}>6</Button>
                         <Button type="orange" onClick={this._handleSubClick}>-</Button>
                     </div>
                     <div className={styles.row}>
-                        <Button type="black" onClick={this._handleBtnClick('1')}>1</Button>
-                        <Button type="black" onClick={this._handleBtnClick('2')}>2</Button>
-                        <Button type="black" onClick={this._handleBtnClick('3')}>3</Button>
+                        <Button type="black" onClick={this._handleNumBtnClick('1')}>1</Button>
+                        <Button type="black" onClick={this._handleNumBtnClick('2')}>2</Button>
+                        <Button type="black" onClick={this._handleNumBtnClick('3')}>3</Button>
                         <Button type="orange" onClick={this._handleAddClick}>+</Button>
                     </div>
                     <div className={styles.row}>
-                        <Button type="black" onClick={this._handleBtnClick('0')}>0</Button>
+                        <Button type="black" onClick={this._handleNumBtnClick('0')}>0</Button>
                         <Button type="black" width="medium">.</Button>
                         <Button type="orange" onClick={this._handleEqualClick}>=</Button>
                     </div>
