@@ -43,6 +43,7 @@ class Calculator extends Component {
         this._handleDivideClick = this._handleDivideClick.bind(this);
         this._handleTimesClick = this._handleTimesClick.bind(this);
         this._handlePlusmnClick = this._handlePlusmnClick.bind(this);
+        this._handlePercentClick = this._handlePercentClick.bind(this);
         this._handleResetClick = this._handleResetClick.bind(this);
         this._handleBtnClick = this._handleBtnClick.bind(this);
     }
@@ -167,6 +168,15 @@ class Calculator extends Component {
         });
     }
 
+    _handlePercentClick() {
+        let { displayNum } = this.state,
+            num = displayNum / 100;
+
+        this.setState({
+            displayNum: num,
+        });
+    }
+
     _handleBtnClick(numString) {
         let that = this;
 
@@ -231,7 +241,7 @@ class Calculator extends Component {
                 <div className={styles.row}>
                     <Button type="gray" onClick={this._handleResetClick}>AC</Button>
                     <Button type="gray" onClick={this._handlePlusmnClick}>&plusmn;</Button>
-                    <Button type="gray">%</Button>
+                    <Button type="gray" onClick={this._handlePercentClick}>%</Button>
                     <Button type="orange" onClick={this._handleDivideClick}>&divide;</Button>
                 </div>
                 <div className={styles.row}>
