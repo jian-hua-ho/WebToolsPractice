@@ -209,7 +209,7 @@ class Calculator extends Component {
             that.setState({
                 displayNum: value,
                 operand: value,
-                isFloat: !isFloat,
+                isFloat: false,
                 shouldRefresh: false,
             });
         }
