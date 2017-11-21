@@ -310,13 +310,4 @@ class Calculator extends Component {
     }
 }
 
-function _getNum(keyCode, num, shouldRefresh) {
-    let oriNumString = _.toString(num),
-        appendString = String.fromCharCode(keyCode),
-        resultString = oriNumString === '0' ? appendString : oriNumString + appendString,
-        result = _.toNumber(resultString);
-
-    return result;
-}
-
 export default Calculator;
