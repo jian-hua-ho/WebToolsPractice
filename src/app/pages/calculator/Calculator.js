@@ -245,8 +245,18 @@ class Calculator extends Component {
         }
 
         let { displayNum, currentNum, operand, operator } = this.state,
-            newNum = calculation.calc(currentNum, operand, operator),
             shouldRefresh = newOperator !== OPERATORS.DEFAULT;
+
+        if (newOperator !== operator && operator !== '') {
+            this.setState({
+                operator: newOperator,
+                shouldRefresh,
+            });
+
+            return;
+        }
+
+        let newNum = calculation.calc(currentNum, operand, operator);
 
         this.setState({
             displayNum: newNum,
