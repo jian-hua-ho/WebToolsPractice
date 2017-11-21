@@ -1,16 +1,16 @@
 
-function calc(currentNum, displayNum, operator) {
+function calc(currentNum, operand, operator) {
     switch (operator) {
         case OPERATORS.PLUS:
-            return currentNum + displayNum;
+            return currentNum + operand;
         case OPERATORS.MINUS:
-            return currentNum - displayNum;
+            return currentNum - operand;
         case OPERATORS.DIVIDE:
-            return window.parseFloat((currentNum / displayNum).toFixed(9));
+            return window.parseFloat((currentNum / operand).toFixed(9));
         case OPERATORS.TIMES:
-            return window.parseFloat((currentNum * displayNum).toFixed(9));
+            return window.parseFloat((currentNum * operand).toFixed(9));
         default:
-            return displayNum;
+            return currentNum !== 0 ? currentNum : operand;
     }
 }
 
