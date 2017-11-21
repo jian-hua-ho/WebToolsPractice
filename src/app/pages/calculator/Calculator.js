@@ -26,6 +26,7 @@ class Calculator extends Component {
             operand: 0,
             operator: OPERATORS.DEFAULT,
             shouldRefresh: false,
+            isFloat: false,
         };
 
         this._reset = this._reset.bind(this);
@@ -148,7 +149,9 @@ class Calculator extends Component {
     }
 
     _handleDotClick() {
-        console.log('DOT!!!');
+        this.setState({
+            isFloat: true,
+        });
     }
 
     _handleAddClick() {
@@ -237,6 +240,7 @@ class Calculator extends Component {
             operand: 0,
             operator: OPERATORS.DEFAULT,
             shouldRefresh: false,
+            isFloat: false,
         });
     }
 
