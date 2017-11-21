@@ -39,6 +39,7 @@ class Calculator extends Component {
         this._handleEnterKeyDown = this._handleEnterKeyDown.bind(this);
         this._handleDivideKeyDown = this._handleDivideKeyDown.bind(this);
         this._handleTimesKeyDown = this._handleTimesKeyDown.bind(this);
+        this._handleDotKeyDown = this._handleDotKeyDown.bind(this);
         this._handleEqualClick = this._handleEqualClick.bind(this);
         this._handleDotClick = this._handleDotClick.bind(this);
         this._handleAddClick = this._handleAddClick.bind(this);
@@ -60,6 +61,7 @@ class Calculator extends Component {
         window.document.addEventListener('keydown', this._handleEnterKeyDown, false);
         window.document.addEventListener('keydown', this._handleDivideKeyDown, false);
         window.document.addEventListener('keydown', this._handleTimesKeyDown, false);
+        window.document.addEventListener('keydown', this._handleDotKeyDown, false);
     }
 
     componentWillUnmount() {
@@ -71,6 +73,7 @@ class Calculator extends Component {
         window.document.removeEventListener('keydown', this._handleEnterKeyDown, false);
         window.document.removeEventListener('keydown', this._handleDivideKeyDown, false);
         window.document.removeEventListener('keydown', this._handleTimesKeyDown, false);
+        window.document.removeEventListener('keydown', this._handleDotKeyDown, false);
     }
 
     // Event Handlers
@@ -79,18 +82,26 @@ class Calculator extends Component {
             return;
         }
 
-        let { displayNum, shouldRefresh } = this.state,
+        let { displayNum, shouldRefresh, isFloat } = this.state,
+            numString = String.fromCharCode(e.which),
             value;
 
         if (shouldRefresh) {
-            value = _.toNumber(String.fromCharCode(e.which));
+            value = _.toNumber(numString);
         } else {
-            value = _getNum(e.which, displayNum, shouldRefresh);
+            let oriNumString = _.toString(displayNum);
+
+            if (isFloat && !oriNumString.includes('.')) {
+                value = _.toNumber(`${oriNumString}.${numString}`);
+            } else {
+                value = _.toNumber(`${oriNumString}${numString}`);
+            }
         }
 
         this.setState({
             displayNum: value,
             operand: value,
+            isFloat: false,
             shouldRefresh: false,
         });
     }
@@ -141,6 +152,14 @@ class Calculator extends Component {
     _handleEnterKeyDown(e) {
         if (e.which === KEYCODE_COMMON.ENTER) {
             this._operation(OPERATORS.DEFAULT);
+        }
+    }
+
+    _handleDotKeyDown(e) {
+        if (e.which === KEYCODE_COMMON.DOT) {
+            this.setState({
+                isFloat: true,
+            });
         }
     }
 
