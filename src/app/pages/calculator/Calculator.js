@@ -23,6 +23,7 @@ class Calculator extends Component {
         this.state = {
             displayNum: 0,
             currentNum: 0,
+            operand: 0,
             operator: OPERATORS.DEFAULT,
             shouldRefresh: false,
         };
@@ -88,6 +89,7 @@ class Calculator extends Component {
 
         this.setState({
             displayNum: value,
+            operand: value,
             shouldRefresh: false,
         });
     }
@@ -200,6 +202,7 @@ class Calculator extends Component {
 
             that.setState({
                 displayNum: value,
+                operand: value,
                 shouldRefresh: false,
             });
         }
@@ -215,8 +218,8 @@ class Calculator extends Component {
             throw new Error('Invalid operator');
         }
 
-        let { displayNum, currentNum, operator } = this.state,
-            newNum = calculation.calc(currentNum, displayNum, operator),
+        let { displayNum, currentNum, operand, operator } = this.state,
+            newNum = calculation.calc(currentNum, operand, operator),
             shouldRefresh = newOperator !== OPERATORS.DEFAULT;
 
         this.setState({
