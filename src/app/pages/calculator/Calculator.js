@@ -191,21 +191,25 @@ class Calculator extends Component {
         let that = this;
 
         return () => {
-            let { displayNum, shouldRefresh } = that.state,
+            let { displayNum, shouldRefresh, isFloat } = that.state,
                 value;
 
             if (shouldRefresh) {
                 value = _.toNumber(numString);
             } else {
-                let oriNumString = _.toString(displayNum),
-                    resultString = oriNumString + numString;
+                let oriNumString = _.toString(displayNum);
 
-                value = _.toNumber(resultString);
+                if (isFloat && !oriNumString.includes('.')) {
+                    value = _.toNumber(`${oriNumString}.${numString}`);
+                } else {
+                    value = _.toNumber(`${oriNumString}${numString}`);
+                }
             }
 
             that.setState({
                 displayNum: value,
                 operand: value,
+                isFloat: !isFloat,
                 shouldRefresh: false,
             });
         }
