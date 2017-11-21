@@ -234,6 +234,7 @@ class Calculator extends Component {
         this.setState({
             displayNum: 0,
             currentNum: 0,
+            operand: 0,
             operator: OPERATORS.DEFAULT,
             shouldRefresh: false,
         });
