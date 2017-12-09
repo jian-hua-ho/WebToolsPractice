@@ -15,7 +15,7 @@ class App extends Component {
                 <Switch>
                     <Route exact path="/" component={Root} />
                     <Route path="/calculator" component={Calculator} />
-                    <Route paht="/random" component={RandomNum} />
+                    <Route path="/random-num" component={RandomNum} />
                 </Switch>
             </BrowserRouter>
         );
