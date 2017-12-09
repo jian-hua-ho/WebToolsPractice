@@ -16,6 +16,7 @@ class RandomNum extends Component {
 
         this._handleMinChange = this._handleMinChange.bind(this);
         this._handleMaxChange = this._handleMaxChange.bind(this);
+        this._handleChangeClick = this._handleChangeClick.bind(this);
     }
 
     // Event handlers
@@ -38,6 +39,21 @@ class RandomNum extends Component {
 
         this.setState({
             maxNum,
+        });
+    }
+
+    _handleChangeClick() {
+        let minNum = _.parseInt(this.state.minNum),
+            maxNum = _.parseInt(this.state.maxNum);
+
+        if (minNum >= maxNum) {
+            alert('Max number must bigger than min number');
+            return;
+        }
+
+        let displayNum = getRandomInt(minNum, maxNum);
+        this.setState({
+            displayNum,
         });
     }
 
@@ -65,11 +81,15 @@ class RandomNum extends Component {
                         onChange={this._handleMaxChange} />
                 </div>
                 <div className={styles.containerCenter}>
-                    <button className={styles.btn}>START</button>
+                    <button className={styles.btn} onClick={this._handleChangeClick}>START</button>
                 </div>
             </div>
         );
     }
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 export default RandomNum;
