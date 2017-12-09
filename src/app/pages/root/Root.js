@@ -8,6 +8,7 @@ const Root = () => {
             <ul>
                 <li><Link to="/calculator">Calculator</Link></li>
                 <li><Link to="/random-num">Random Number</Link></li>
+                <li><Link to="/validation">Validation</Link></li>
             </ul>
         </div>
     );
