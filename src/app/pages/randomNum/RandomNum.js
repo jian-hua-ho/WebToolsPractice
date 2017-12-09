@@ -12,11 +12,13 @@ class RandomNum extends Component {
             displayNum: 0,
             minNum: 1,
             maxNum: 20,
+            btnDisabled: false,
         };
 
         this._handleMinChange = this._handleMinChange.bind(this);
         this._handleMaxChange = this._handleMaxChange.bind(this);
         this._handleChangeClick = this._handleChangeClick.bind(this);
+        this._repeatUntil = this._repeatUntil.bind(this);
     }
 
     // Event handlers
@@ -43,18 +45,40 @@ class RandomNum extends Component {
     }
 
     _handleChangeClick() {
-        let minNum = _.parseInt(this.state.minNum),
-            maxNum = _.parseInt(this.state.maxNum);
+        let that = this,
+            minNum = _.parseInt(that.state.minNum),
+            maxNum = _.parseInt(that.state.maxNum);
 
         if (minNum >= maxNum) {
             alert('Max number must bigger than min number');
             return;
         }
 
-        let displayNum = getRandomInt(minNum, maxNum);
-        this.setState({
-            displayNum,
+        that.setState({
+            btnDisabled: true,
+        }, () => {
+            that._repeatUntil(() => {
+                let displayNum = getRandomInt(minNum, maxNum);
+                that.setState({
+                    displayNum,
+                });
+            }, 30, 280);
         });
+    }
+
+    // Helpers
+    _repeatUntil(fn, start, end) {
+        let that = this;
+        if (start < end) {
+            window.setTimeout(function () {
+                fn();
+                that._repeatUntil(fn, start * 1.05, end);
+            }, start);
+        } else {
+            that.setState({
+                btnDisabled: false,
+            });
+        }
     }
 
     // Render
@@ -81,7 +105,12 @@ class RandomNum extends Component {
                         onChange={this._handleMaxChange} />
                 </div>
                 <div className={styles.containerCenter}>
-                    <button className={styles.btn} onClick={this._handleChangeClick}>START</button>
+                    <button
+                        className={styles.btn}
+                        onClick={this._handleChangeClick}
+                        disabled={this.state.btnDisabled}>
+                        START
+                    </button>
                 </div>
             </div>
         );
