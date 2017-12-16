@@ -60,13 +60,11 @@ Text.propTypes = {
         PropTypes.number,
     ]),
     rules: PropTypes.string,
-    message: PropTypes.string,
     onChange: PropTypes.func.isRequired,
 };
 
 Text.defaultProps = {
     rules: '',
-    message: '',
 };
 
 export default Text;
