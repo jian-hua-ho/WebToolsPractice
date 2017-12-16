@@ -40,7 +40,8 @@ class Validation extends Component {
         return (
             <div>
                 <Text
-                    label="Email"
+                    name="Email"
+                    label="Email: "
                     placeholder="text@example.com"
                     value={this.state.email}
                     rules="email"

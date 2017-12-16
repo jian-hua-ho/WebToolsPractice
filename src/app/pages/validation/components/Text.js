@@ -18,7 +18,7 @@ class Text extends Component {
 
     componentWillReceiveProps(nextProps) {
         nextProps.rules.split('|').forEach((rule) => {
-            let validator = validate(rule, nextProps.label, nextProps.value);
+            let validator = validate(rule, nextProps.name, nextProps.value);
 
             if (!validator.isValid) {
                 let message = validator.message;
@@ -52,6 +52,7 @@ class Text extends Component {
 }
 
 Text.propTypes = {
+    name: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
     value: PropTypes.oneOfType([
