@@ -7,6 +7,8 @@ import styles from './styles';
 import Root from 'app/pages/root/Root';
 import Calculator from 'app/pages/calculator/Calculator';
 import RandomNum from 'app/pages/randomNum/RandomNum';
+import Validation from 'app/pages/validation/Validation';
+import MultiLang from 'app/pages/multiLang/MultiLang';
 
 class App extends Component {
     render() {
@@ -15,7 +17,9 @@ class App extends Component {
                 <Switch>
                     <Route exact path="/" component={Root} />
                     <Route path="/calculator" component={Calculator} />
-                    <Route paht="/random" component={RandomNum} />
+                    <Route path="/random-num" component={RandomNum} />
+                    <Route path="/validation" component={Validation} />
+                    <Route path="/multi-lang" component={MultiLang} />
                 </Switch>
             </BrowserRouter>
         );
