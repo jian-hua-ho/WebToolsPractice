@@ -17,8 +17,13 @@ const validations = {
     },
 };
 
-export const ruleNames = Object.keys(validations);
+const ruleNames = Object.keys(validations);
 
 export const validate = (rule, name, value) => {
+    if (ruleNames.indexOf(rule) < 0) {
+        console.error(`Invalid rule: ${rule}`);
+        return defaultValidator;
+    }
+
     return validations[rule](name, value);
 };

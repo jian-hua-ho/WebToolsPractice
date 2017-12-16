@@ -18,16 +18,13 @@ class Text extends Component {
 
     componentWillReceiveProps(nextProps) {
         nextProps.rules.split('|').forEach((rule) => {
-            if (ruleNames.indexOf(rule) < 0) {
-                console.error(`Invalid Rules: ${rule}`)
-                return;
-            }
-
             let validator = validate(rule, nextProps.label, nextProps.value);
 
             if (!validator.isValid) {
+                let message = validator.message;
+
                 this.setState({
-                    message: validator.message,
+                    message,
                 });
             } else {
                 this.setState({ message: '' });
@@ -62,11 +59,13 @@ Text.propTypes = {
         PropTypes.number,
     ]),
     rules: PropTypes.string,
+    message: PropTypes.string,
     onChange: PropTypes.func.isRequired,
 };
 
 Text.defaultProps = {
     rules: '',
+    message: '',
 };
 
 export default Text;
