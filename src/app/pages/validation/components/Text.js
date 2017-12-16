@@ -23,7 +23,7 @@ class Text extends Component {
                 return;
             }
 
-            let validator = validate(rule, nextProps.value);
+            let validator = validate(rule, nextProps.label, nextProps.value);
 
             if (!validator.isValid) {
                 this.setState({
