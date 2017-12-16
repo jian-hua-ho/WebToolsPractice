@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 
-import Email from './components/Email';
+import Text from './components/Text';
 
 class Validation extends Component {
     // Life Cycles
@@ -39,12 +39,12 @@ class Validation extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <label>Email:&nbsp;</label>
-                    <Email
-                        value={this.state.email}
-                        onChange={this._handleEmailChange} />
-                </div>
+                <Text
+                    label="Email"
+                    placeholder="text@example.com"
+                    value={this.state.email}
+                    rules="email"
+                    onChange={this._handleEmailChange} />
                 <div>
                     <label>Number Range:&nbsp;</label>
                     <input
