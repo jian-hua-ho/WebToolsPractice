@@ -1,15 +1,15 @@
+const defaultValidator = {
+    isValid: true,
+    message: '',
+};
+
 const validations = {
     email: (name, value) => {
         let re = /^$|^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        let validator = Object.assign({}, defaultValidator);
 
-        let validator = {
-            isValid: true,
-            message: '',
-        };
-
-        let valid = re.test(value);
-        if (!valid) {
-            validator.isValid = valid;
+        if (!re.test(value)) {
+            validator.isValid = false;
             validator.message = `${name}: Email format is not valid`;
         }
 
