@@ -10,7 +10,7 @@ const validations = {
 
         if (!re.test(value)) {
             validator.isValid = false;
-            validator.message = `${name}: Email format is not valid`;
+            validator.message = `${name} is not a valid email address`;
         }
 
         return validator;
