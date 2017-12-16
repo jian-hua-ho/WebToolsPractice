@@ -15,10 +15,12 @@ class Text extends Component {
     render() {
         return (
             <div>
+                <label>{this.props.label}</label>
                 <input
                     type="text"
-                    onChange={this.props.onChange}
-                    value={this.props.value} />
+                    placeholder={this.props.placeholder}
+                    value={this.props.value}
+                    onChange={this.props.onChange} />
                 <span>{this.state.message}</span>
             </div>
         );
@@ -26,11 +28,13 @@ class Text extends Component {
 }
 
 Text.propTypes = {
-    onChange: PropTypes.func.isRequired,
+    label: PropTypes.string.isRequired,
+    placeholder: PropTypes.string,
     value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
     ]),
-}
+    onChange: PropTypes.func.isRequired,
+};
 
-export default Text
+export default Text;
