@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import Text from './components/Text';
-
 class Validation extends Component {
     // Life Cycles
     constructor() {
