@@ -20,7 +20,7 @@ RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get -y install nodejs
 
 # Install yarn
-RUN npm install -g yarn@0.27.5
+RUN npm install -g yarn
 
 # Install webpack
-RUN yarn global add webpack@2.3.3
+RUN yarn global add webpack
